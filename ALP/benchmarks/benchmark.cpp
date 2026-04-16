@@ -31,7 +31,7 @@ void ALP_ASSERT(T original_val, T decoded_val, size_t idx) {
 
 void write_result_header(std::ofstream& ofile) {
 	//
-	ofile << "idx,column,data_type,size,rowgroups_count,vectors_count,decompression_speed(cycles_per_value),"
+	ofile << "idx,column,data_type,size(bits_per_value),total_compressed_bits,rowgroups_count,vectors_count,decompression_speed(cycles_per_value),"
 	         "compression_speed(cycles_per_value),\n";
 }
 
@@ -285,11 +285,13 @@ void ALPBench::typed_bench_column(const ColumnDescriptor& column, std::ofstream&
 	}
 
 	compression_ratio = calculate_alp_compression_size<PT>(compression_metadata);
+	double total_compressed_bits = compression_ratio * n_tuples;
 	ofile << std::fixed << std::setprecision(2)            //
 	      << column.id << ","                              //
 	      << column.name << ","                            //
 	      << get_type_string<PT>() << ","                  //
 	      << compression_ratio << ","                      //
+	      << total_compressed_bits << ","                  //
 	      << n_rowgroups << ","                            //
 	      << n_vecs << ","                                 //
 	      << bench_speed_result.decompression_speed << "," //

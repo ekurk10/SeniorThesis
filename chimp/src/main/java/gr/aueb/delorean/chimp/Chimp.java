@@ -1,5 +1,7 @@
 package gr.aueb.delorean.chimp;
 
+import java.io.ByteArrayOutputStream;
+
 /**
  * Implements the Chimp time series compression. Value compression
  * is for floating points only.
@@ -37,10 +39,12 @@ public class Chimp {
 //    public final static short FIRST_DELTA_BITS = 27;
 
     private OutputBitStream out;
+    private ByteArrayOutputStream byteArrayOut;
 
     // We should have access to the series?
     public Chimp() {
-        out = new OutputBitStream(new byte[1000*8]);
+        byteArrayOut = new ByteArrayOutputStream();
+        out = new OutputBitStream(byteArrayOut);
         size = 0;
     }
 
@@ -131,6 +135,6 @@ public class Chimp {
     }
 
 	public byte[] getOut() {
-		return out.buffer;
+		return byteArrayOut.toByteArray();
 	}
 }
