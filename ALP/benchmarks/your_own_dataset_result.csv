@@ -1,1 +1,2 @@
-idx,column,data_type,size,rowgroups_count,vectors_count,decompression_speed(cycles_per_value),compression_speed(cycles_per_value),
+idx,column,data_type,size(bits_per_value),total_compressed_bits,rowgroups_count,vectors_count,decompression_speed(cycles_per_value),compression_speed(cycles_per_value),
+0,data,float,9.57,571090393.63,583,58277,0.29,1.90

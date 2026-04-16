@@ -1,1 +1,2 @@
-id,column_name,data_type,path,file_type
+id,column_name,data_type,file_path,file_type
+0,data,float,/home/ekurk10/thesisfinal/src/datasets/bins.csv,csv
